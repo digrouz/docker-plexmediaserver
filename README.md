@@ -3,6 +3,12 @@ Install Plex Media Server into a Linux Container
 
 ![Plex](https://s3-us-west-2.amazonaws.com/kotis-estores/layouts/plex/plex-logo.png)
 
+## Tag
+Several tag are available:
+* latest: see centos
+* centos: [Dockerfile_centos](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_centos)
+* ubuntu: [Dockerfile_ubuntu](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_ubuntu)
+
 
 ## Description
 
