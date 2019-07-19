@@ -1,5 +1,5 @@
 # docker-ubu-plexmediaserver
-Install Plex Media Server into an Ubuntu Linux Container
+Install Plex Media Server into a Linux Container
 
 ![Plex](https://s3-us-west-2.amazonaws.com/kotis-estores/layouts/plex/plex-logo.png)
 
