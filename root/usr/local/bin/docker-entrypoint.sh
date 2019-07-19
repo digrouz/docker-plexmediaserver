@@ -11,21 +11,11 @@ AutoUpgrade
 ConfigureUser
 
 if [ "$1" == 'plex' ]; then
-  mkdir -p /config
-  chown -R "${MYUSER}":"${MYUSER}" /config
-  chmod -R 0750 /config
   mkdir -p /transcode
   chown -R "${MYUSER}":"${MYUSER}" /transcode
   chmod -R 0750 /transcode
-  cd /config
   rm -rf /var/run/dbus
   mkdir -p /var/run/dbus
-  DockLog "Starting app: dbus-daemon"
-  exec dbus-daemon --system --nofork &
-  until [ -e /var/run/dbus/system_bus_socket ]; do
-    DockLog  "dbus-daemon is not running on hosting server..."
-    sleep 1s
-  done
   cat <<EOF > /tmp/plex-env
 PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/var/lib/plexmediaserver/Library/Application Support
 PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
@@ -41,8 +31,18 @@ LD_LIBRARY_PATH=/usr/lib/plexmediaserver/lib
 EOF
   PrepareEnvironment /tmp/plex-env
   . /etc/profile
+
+  RunDropletEntrypoint
+
+  DockLog "Starting app: dbus-daemon"
+  exec dbus-daemon --system --nofork &
+  until [ -e /var/run/dbus/system_bus_socket ]; do
+    DockLog  "dbus-daemon is not running on hosting server..."
+    sleep 1s
+  done
   DockLog "Starting app: avahi-daemon"
   exec avahi-daemon --no-chroot &
+
   DockLog "Starting app: ${1}"
   exec su-exec "${MYUSER}" /usr/lib/plexmediaserver/Plex\ Media\ Server
 else

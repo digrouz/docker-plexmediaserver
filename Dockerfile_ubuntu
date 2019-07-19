@@ -3,46 +3,77 @@ LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ### Environment variables
 ENV DEBIAN_FRONTEND='noninteractive' \
-    HOME='/config' 
+    TERM='xterm' \
+    APPUSER='plex' \
+    APPUID='10011' \
+    APPGID='10011' \
+    PLEXVERSION='1.16.3.1402' \
+    PLEXHASH='22929c8a2'
 
+# Copy config files
+COPY root/ /
 
 ### Install Applications DEBIAN_FRONTEND=noninteractive  --no-install-recommends
-RUN apt-get update && \
+RUN set -x && \
+    chmod 1777 /tmp && \
+    . /usr/local/bin/docker-entrypoint-functions.sh && \
+    MYUSER=${APPUSER} && \
+    MYUID=${APPUID} && \
+    MYGID=${APPGID} && \
+    apt-get update && \
     apt-get -y --no-install-recommends dist-upgrade && \
-    apt-get install -y --no-install-recommends ca-certificates apt-transport-https avahi-daemon dbus libnss-mdns  && \
-    apt-get install -y --no-install-recommends curl gcc make git libc-dev && \
-    git clone --depth 1 https://github.com/ncopa/su-exec /tmp/su-exec && \
-    cd /tmp/su-exec && \
-    make && \
-    cp /tmp/su-exec/su-exec /usr/local/bin/su-exec && \
+    apt-get install -y --no-install-recommends\
+      ca-certificates \
+      apt-transport-https \
+      avahi-daemon \
+      dbus \
+      libnss-mdns \
+      curl \
+    && \
+    mv /tmp/custom.list /etc/apt/sources.list.d/custom.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      su-exec \
+    && \
+    curl -sL https://downloads.plex.tv/plex-media-server-new/${PLEXVERSION}-${PLEXHASH}/debian/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb -o /tmp/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb && \
     echo deb https://downloads.plex.tv/repo/deb ./public main | tee /etc/apt/sources.list.d/my-plexmediaserver.list && \
     curl -o /tmp/PlexSign.key https://downloads.plex.tv/plex-keys/PlexSign.key && \
     apt-key add /tmp/PlexSign.key && \
     apt-get update && \
-    apt-get install -y --no-install-recommends plexmediaserver && \
-    apt-get purge -y --auto-remove curl gcc make git libc-dev && \
+    dpkg -i --force-confold \
+      /tmp/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb \
+    && \
+    bash -c ". /usr/local/bin/docker-entrypoint-functions.sh && ConfigureUser" && \
+    mkdir /docker-entrypoint.d && \
+    chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    ln -snf /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh && \
     apt-get -y autoclean && \
     apt-get -y clean && \
     apt-get -y autoremove && \
-    rm -rf /tmp/* && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/tmp/*
+    rm -rf /tmp/* \
+           /var/lib/apt/lists/* \
+           /var/tmp/*
 
 ### Volume
-VOLUME ["/config", "/transcode", "/tv", "/movies", "/animes", "/music"]
+VOLUME ["/transcode", "/tv", "/movies", "/animes", "/music"]
 
 ### Expose ports
-EXPOSE 32400 
-EXPOSE 32400/udp 
+EXPOSE 3005
+EXPOSE 8324
+EXPOSE 32400
+EXPOSE 32400/udp
+EXPOSE 32410/udp
+EXPOSE 32412/udp
+EXPOSE 32413/udp
+EXPOSE 32414/udp
 EXPOSE 32469
-EXPOSE 32469/udp 
-EXPOSE 5353/udp 
+EXPOSE 32469/udp
+EXPOSE 5353/udp
 EXPOSE 1900/udp
 
 ### Running User: not used, managed by docker-entrypoint.sh
 #USER plex
 
 ### Start Plex
-COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["plex"]

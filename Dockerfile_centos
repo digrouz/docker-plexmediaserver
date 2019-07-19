@@ -5,7 +5,6 @@ LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     TERM='xterm' \
-    GIT_BRANCH='master' \
     APPUSER='plex' \
     APPUID='10011' \
     APPGID='10011' \
@@ -48,7 +47,7 @@ RUN set -x && \
            /var/tmp/*
 
 ### Volume
-VOLUME ["/config", "/transcode", "/tv", "/movies", "/animes", "/music"]
+VOLUME ["/transcode", "/tv", "/movies", "/animes", "/music"]
 
 ### Expose ports
 EXPOSE 3005
