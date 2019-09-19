@@ -9,7 +9,7 @@ ENV LANG='en_US.UTF-8' \
     APPUID='10011' \
     APPGID='10011' \
     PLEXVERSION='1.16.6.1592' \
-    PLEXHASH='22929c8a2'
+    PLEXHASH='b9d49bdb7'
 
 # Copy config files
 COPY root/ /
