@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND='noninteractive' \
     APPUSER='plex' \
     APPUID='10011' \
     APPGID='10011' \
-    PLEXVERSION='1.18.2.2029' \
-    PLEXHASH='36236cc4c'
+    PLEXVERSION='1.18.2.2041' \
+    PLEXHASH='3d469cb32'
 
 # Copy config files
 COPY root/ /
