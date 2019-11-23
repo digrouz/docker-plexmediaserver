@@ -8,8 +8,8 @@ ENV LANG='en_US.UTF-8' \
     APPUSER='plex' \
     APPUID='10011' \
     APPGID='10011' \
-    PLEXVERSION='1.18.2.2041' \
-    PLEXHASH='3d469cb32'
+    PLEXVERSION='1.18.2.2058' \
+    PLEXHASH='e67a4e892'
 
 # Copy config files
 COPY root/ /
