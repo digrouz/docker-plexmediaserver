@@ -39,14 +39,14 @@ EOF
     DockLog "Cleaning pid file from unclean shutdown"
     rm -rf /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/plexmediaserver.pid
   fi
-  DockLog "Starting app: dbus-daemon"
-  exec dbus-daemon --system --nofork &
-  until [ -e /var/run/dbus/system_bus_socket ]; do
-    DockLog  "dbus-daemon is not running on hosting server..."
-    sleep 1s
-  done
-  DockLog "Starting app: avahi-daemon"
-  exec avahi-daemon --no-chroot &
+  #DockLog "Starting app: dbus-daemon"
+  #exec dbus-daemon --system --nofork &
+  #until [ -e /var/run/dbus/system_bus_socket ]; do
+  #  DockLog  "dbus-daemon is not running on hosting server..."
+  #  sleep 1s
+  #done
+  #DockLog "Starting app: avahi-daemon"
+  #exec avahi-daemon --no-chroot &
 
   DockLog "Starting app: ${1}"
   exec su-exec "${MYUSER}" /usr/lib/plexmediaserver/Plex\ Media\ Server
