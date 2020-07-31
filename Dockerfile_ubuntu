@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND='noninteractive' \
     APPUSER='plex' \
     APPUID='10011' \
     APPGID='10011' \
-    PLEX_MEDIA_SERVER_INFO_DEVICE=docker \
+    PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
     PLEXVERSION='1.19.4.2935' \
     PLEXHASH='79e214ead'
 
