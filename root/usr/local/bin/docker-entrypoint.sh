@@ -14,8 +14,6 @@ if [ "$1" == 'plex' ]; then
   mkdir -p /transcode
   chown -R "${MYUSER}":"${MYUSER}" /transcode
   chmod -R 0750 /transcode
-  rm -rf /var/run/dbus
-  mkdir -p /var/run/dbus
   cat <<EOF > /tmp/plex-env
 PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/var/lib/plexmediaserver/Library/Application Support
 PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
@@ -39,6 +37,8 @@ EOF
     DockLog "Removing pid file from unclean shutdown"
     rm -rf /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
   fi
+  #rm -rf /var/run/dbus
+  #mkdir -p /var/run/dbus
   #DockLog "Starting app: dbus-daemon"
   #exec dbus-daemon --system --nofork &
   #until [ -e /var/run/dbus/system_bus_socket ]; do
