@@ -35,9 +35,9 @@ EOF
 
   RunDropletEntrypoint
   
-  if [ -e /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/plexmediaserver.pid ]; then
-    DockLog "Cleaning pid file from unclean shutdown"
-    rm -rf /var/lib/plexmediaserver/Library/Application Support/Plex Media Server/plexmediaserver.pid
+  if [ -e "/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid" ]; then
+    DockLog "Removing pid file from unclean shutdown"
+    rm -rf /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
   fi
   #DockLog "Starting app: dbus-daemon"
   #exec dbus-daemon --system --nofork &
