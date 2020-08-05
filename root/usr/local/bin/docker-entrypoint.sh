@@ -15,16 +15,16 @@ if [ "$1" == 'plex' ]; then
   chown -R "${MYUSER}":"${MYUSER}" /transcode
   chmod -R 0750 /transcode
   cat <<EOF > /tmp/plex-env
-PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=/var/lib/plexmediaserver/Library/Application Support
+PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="/var/lib/plexmediaserver/Library/Application Support"
 PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
 PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
 PLEX_MEDIA_SERVER_TMPDIR=/tmp
 LC_ALL=en_US.UTF-8
 LANG=en_US.UTF-8
-PLEX_MEDIA_SERVER_INFO_VENDOR=$(grep ^NAME= /etc/os-release | awk -F= "{print \\$2}" | tr -d \\" )
-PLEX_MEDIA_SERVER_INFO_DEVICE=docker
+PLEX_MEDIA_SERVER_INFO_VENDOR=Docker
+PLEX_MEDIA_SERVER_INFO_DEVICE="Docker Container"
 PLEX_MEDIA_SERVER_INFO_MODEL=$(uname -m)
-PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION=$(grep ^VERSION= /etc/os-release | awk -F= "{print \\$2}" | tr -d \\" )
+PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION=$(uname -r)
 LD_LIBRARY_PATH=/usr/lib/plexmediaserver/lib
 PLEX_MEDIA_SERVER_USER=${MYUSER}
 EOF
