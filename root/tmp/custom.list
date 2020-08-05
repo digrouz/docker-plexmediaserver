@@ -1,1 +1,1 @@
-deb [trusted=yes] https://www.digrouz.com/repo/ubuntu/16.04/x86_64/custom ./
+deb [trusted=yes] https://repo.digrouz.com/repo/ubuntu/16.04/x86_64/custom ./
