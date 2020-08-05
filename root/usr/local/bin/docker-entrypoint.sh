@@ -33,9 +33,9 @@ EOF
 
   RunDropletEntrypoint
   
-  if [ -e "/var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid" ]; then
+  if [ -e /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid ]; then
     DockLog "Removing pid file from unclean shutdown"
-    rm -rf /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
+    rm -rf /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid
   fi
   #rm -rf /var/run/dbus
   #mkdir -p /var/run/dbus
