@@ -17,16 +17,16 @@ if [ "$1" == 'plex' ]; then
   cat <<EOF > /tmp/plex-env
 PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="/var/lib/plexmediaserver/Library/Application Support"
 PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
-PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
-PLEX_MEDIA_SERVER_TMPDIR=/tmp
-LC_ALL=en_US.UTF-8
-LANG=en_US.UTF-8
 PLEX_MEDIA_SERVER_INFO_VENDOR=Docker
 PLEX_MEDIA_SERVER_INFO_DEVICE="Docker Container"
 PLEX_MEDIA_SERVER_INFO_MODEL=$(uname -m)
 PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION=$(uname -r)
+PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
+PLEX_MEDIA_SERVER_TMPDIR=/tmp
+PLEX_MEDIA_SERVER_USER=$(echo ${MYUSER})
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
 LD_LIBRARY_PATH=/usr/lib/plexmediaserver/lib
-PLEX_MEDIA_SERVER_USER=${MYUSER}
 EOF
   PrepareEnvironment /tmp/plex-env
   . /etc/profile
