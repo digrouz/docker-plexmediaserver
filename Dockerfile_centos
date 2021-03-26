@@ -9,8 +9,8 @@ ENV LANG='en_US.UTF-8' \
     APPUID='10011' \
     APPGID='10011' \
     PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
-    PLEXVERSION='1.22.0.4163' \
-    PLEXHASH='d8c4875dd'
+    PLEXVERSION='1.22.1.4228' \
+    PLEXHASH='724c56e62'
 
 # Copy config files
 COPY root/ /
