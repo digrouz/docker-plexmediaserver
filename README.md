@@ -1,3 +1,4 @@
+[![auto-update-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml)
 # docker-ubu-plexmediaserver
 Install Plex Media Server into a Linux Container
 
