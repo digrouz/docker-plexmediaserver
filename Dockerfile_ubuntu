@@ -8,8 +8,8 @@ ENV DEBIAN_FRONTEND='noninteractive' \
     APPUID='10011' \
     APPGID='10011' \
     PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
-    PLEXVERSION='1.22.1.4275' \
-    PLEXHASH='48e10484b'
+    PLEXVERSION='1.22.2.4282' \
+    PLEXHASH='a97b03fad'
 
 # Copy config files
 COPY root/ /
