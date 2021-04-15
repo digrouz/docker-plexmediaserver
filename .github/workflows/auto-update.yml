@@ -11,7 +11,7 @@ on:
 
 jobs:
   auto-update-job:
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
