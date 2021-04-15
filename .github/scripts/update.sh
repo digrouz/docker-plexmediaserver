@@ -7,9 +7,14 @@ LAST_VERSION=$(curl -SsL ${PLEX_URL} | jq .computer.Linux.version | sed -e 's/-.
 LAST_HASH=$(curl -SsL ${PLEX_URL} | jq .computer.Linux.version | sed -e 's/.*-//' -e 's/"//')
 
 
-sed -i -e "s|PLEXVERSION='.*'|PLEXVERSION='$LAST_VERSION'|" Dockerfile_*
-sed -i -e "s|PLEXHASH='.*'|PLEXHASH='$LAST_HASH'|" Dockerfile_*
+sed -i -e "s|PLEXVERSION='.*'|PLEXVERSION='${LAST_VERSION}'|" Dockerfile_*
+sed -i -e "s|PLEXHASH='.*'|PLEXHASH='${LAST_HASH}'|" Dockerfile_*
 
-
-git commit -a -m "update to version: ${LAST_VERSION}-${LAST_HASH}"
-git push
+if output=$(git status --porcelain) && [ -z "$output" ]; then
+  # Working directory clean
+  echo "No new version available!"
+else 
+  # Uncommitted changes
+  git commit -a -m "update to version: ${LAST_VERSION}-${LAST_HASH}"
+  git push
+fi
