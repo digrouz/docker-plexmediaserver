@@ -1,5 +1,8 @@
 [![auto-update-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml)
-# docker-ubu-plexmediaserver
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/digrouz/plexmediaserver)
+![Docker Pulls](https://img.shields.io/docker/pulls/digrouz/plexmediaserver)
+
+# docker-plexmediaserver
 Install Plex Media Server into a Linux Container
 
 ![Plex](https://s3-us-west-2.amazonaws.com/kotis-estores/layouts/plex/plex-logo.png)
