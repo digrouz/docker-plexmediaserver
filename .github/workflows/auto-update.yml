@@ -22,5 +22,5 @@ jobs:
       - name: run update.sh
         run: |
           echo "Run update.sh"
-          .github/scripts/update.sh
+          bash .github/scripts/update.sh
          
