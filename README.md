@@ -1,5 +1,5 @@
 [![auto-update-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/digrouz/plexmediaserver)
+[![dockerhub-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/dockerhub.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/dockerhub.yml)
 ![Docker Pulls](https://img.shields.io/docker/pulls/digrouz/plexmediaserver)
 
 # docker-plexmediaserver
