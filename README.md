@@ -11,6 +11,7 @@ Install Plex Media Server into a Linux Container
 Several tag are available:
 * latest: see centos
 * centos: [Dockerfile_centos](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_centos)
+* rocky8: [Dockerfile_rocky8](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_rocky8)
 * ubuntu: [Dockerfile_ubuntu](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_ubuntu)
 
 
