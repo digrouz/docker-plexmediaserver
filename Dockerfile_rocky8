@@ -43,9 +43,10 @@ RUN set -x && \
     MYUSER=${APPUSER} && \
     MYUID=${APPUID} && \
     MYGID=${APPGID} && \
-    yum install -y epel-release && \
-    yum update -y && \
-    yum install -y \
+    dnf install -y epel-release && \
+    dnf config-manager --set-enabled powertools
+    dnf update -y && \
+    dnf install -y \
       avahi \
       nss-mdns \
       avahi-compat-libdns_sd \
@@ -54,13 +55,13 @@ RUN set -x && \
     curl -sL https://downloads.plex.tv/plex-media-server-new/${PLEXVERSION}-${PLEXHASH}/redhat/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm -o /tmp/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm && \
     COMM=$(cat /proc/1/comm) && \
     echo "systemd" > /proc/1/comm && \
-    yum install -y /tmp/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm && \
+    dnf install -y /tmp/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm && \
     echo ${COMM} > /proc/1/comm && \
     ConfigureUser && \
     mkdir /docker-entrypoint.d && \
     chmod +x /usr/local/bin/docker-entrypoint.sh && \
     ln -snf /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh && \
-    yum clean all && \
+    dnf clean all && \
     rm -rf /tmp/* \
            /var/cache/yum/* \
            /var/tmp/*
