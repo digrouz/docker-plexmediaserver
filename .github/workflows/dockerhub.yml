@@ -1,0 +1,59 @@
+name: dockerhub-workflow
+
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push tag latest
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile_centos
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:latest
+      -
+        name: Build and push tag centos7
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile_centos
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:centos7
+      -
+        name: Build and push tag ubuntu
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile_ubuntu
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:ubuntu
+      -
+        name: Build and push tag rocky8
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile_rocky8
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APPNAME }}:rocky8
