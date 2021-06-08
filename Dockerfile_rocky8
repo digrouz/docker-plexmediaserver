@@ -1,3 +1,7 @@
+
+ARG PLEXVERSION='3.29.2-02'
+ARG PLEXHASH='85f0adf5b'
+
 FROM rockylinux/rockylinux:8.4-rc1 AS su-exec-builder
 
 RUN set -x && \
@@ -14,8 +18,8 @@ RUN set -x && \
 FROM rockylinux/rockylinux:8.4-rc1
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
-ARG PLEXVERSION='3.29.2-02'
-ARG PLEXHASH='85f0adf5b'
+ARG PLEXVERSION
+ARG PLEXHASH
 
 ### Environment variables
 ENV LANG='en_US.UTF-8' \
