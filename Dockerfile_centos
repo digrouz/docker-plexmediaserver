@@ -15,6 +15,9 @@ RUN set -x && \
 FROM centos:7
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
+ARG PLEXVERSION='3.29.2-02'
+ARG PLEXHASH='85f0adf5b'
+
 ### Environment variables
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
@@ -23,8 +26,8 @@ ENV LANG='en_US.UTF-8' \
     APPUID='10011' \
     APPGID='10011' \
     PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
-    PLEXVERSION='1.23.2.4656' \
-    PLEXHASH='85f0adf5b'
+    PLEXVERSION="${PLEXVERSION} \
+    PLEXHASH="${PLEXHASH}"
 
 # Copy config files
 COPY root/ /
