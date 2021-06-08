@@ -58,8 +58,7 @@ RUN set -x && \
     chmod +x /usr/local/bin/docker-entrypoint.sh && \
     ln -snf /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh && \
     yum clean all && \
-    rm -rf /opt/sickchill/.git* \
-           /tmp/* \
+    rm -rf /tmp/* \
            /var/cache/yum/* \
            /var/tmp/*
 
