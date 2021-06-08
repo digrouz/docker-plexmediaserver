@@ -1,3 +1,17 @@
+
+FROM centos:7 AS su-exec-builder
+
+RUN set -x && \
+    yum update -y && \
+    yum install -y \
+      gcc \
+      make \
+      git \
+    && \
+    git clone --depth 1 https://github.com/ncopa/su-exec.git /opt/su-exec && \
+    cd /opt/su-exec && \
+    make
+
 FROM centos:7
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
@@ -14,6 +28,7 @@ ENV LANG='en_US.UTF-8' \
 
 # Copy config files
 COPY root/ /
+COPY --from=su-exec-builder /opt/su-exec/su-exec /usr/local/bin/su-exec
 
 ### Install Application
 RUN set -x && \
@@ -22,14 +37,12 @@ RUN set -x && \
     MYUSER=${APPUSER} && \
     MYUID=${APPUID} && \
     MYGID=${APPGID} && \
-    yum-config-manager --add-repo /tmp/custom.repo && \
     yum install -y epel-release && \
     yum update -y && \
     yum install -y \
       avahi \
       nss-mdns \
       avahi-compat-libdns_sd \
-      su-exec \
     && \
     cd /tmp && \
     curl -sL https://downloads.plex.tv/plex-media-server-new/${PLEXVERSION}-${PLEXHASH}/redhat/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm -o /tmp/plexmediaserver-${PLEXVERSION}-${PLEXHASH}.x86_64.rpm && \
