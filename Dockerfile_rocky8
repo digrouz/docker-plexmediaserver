@@ -47,7 +47,7 @@ RUN set -x && \
     dnf update -y && \
     dnf install -y \
       dnf-plugins-core \
-    &&
+    && \
     dnf config-manager --set-enabled powertools && \
     dnf install -y \
       avahi \
