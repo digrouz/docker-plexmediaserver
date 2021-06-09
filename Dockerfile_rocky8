@@ -44,8 +44,11 @@ RUN set -x && \
     MYUID=${APPUID} && \
     MYGID=${APPGID} && \
     dnf install -y epel-release && \
-    dnf config-manager --set-enabled powertools && \
     dnf update -y && \
+    dnf install -y \
+      dnf-plugins-core \
+    &&
+    dnf config-manager --set-enabled powertools && \
     dnf install -y \
       avahi \
       nss-mdns \
