@@ -1,5 +1,5 @@
-ARG PLEXVERSION='1.23.2.4656'
-ARG PLEXHASH='85f0adf5b'
+ARG PLEXVERSION='1.23.3.4707'
+ARG PLEXHASH='ebb5fe9f3'
 
 FROM centos:7 AS su-exec-builder
 
