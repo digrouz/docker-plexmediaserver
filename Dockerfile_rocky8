@@ -2,7 +2,7 @@
 ARG PLEXVERSION='1.25.0.5282'
 ARG PLEXHASH='2edd3c44d'
 
-FROM rockylinux/rockylinux:8.4 AS su-exec-builder
+FROM rockylinux/rockylinux:8.5 AS su-exec-builder
 
 RUN set -x && \
     dnf update -y && \
@@ -15,7 +15,7 @@ RUN set -x && \
     cd /opt/su-exec && \
     make
 
-FROM rockylinux/rockylinux:8.4
+FROM rockylinux/rockylinux:8.5
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ARG PLEXVERSION
