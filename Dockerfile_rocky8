@@ -1,6 +1,6 @@
 
-ARG PLEXVERSION='1.28.2.6151'
-ARG PLEXHASH='914ddd2b3'
+ARG PLEXVERSION='1.29.0.6244'
+ARG PLEXHASH='819d3678c'
 
 FROM rockylinux/rockylinux:8.5 AS su-exec-builder
 
