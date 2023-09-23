@@ -1,5 +1,5 @@
 #!/command/with-contenv sh
 
-. /etc/profile.d/plexmediaserver
+. /etc/profile.d/plexmediaserver.sh
 
 exec s6-setuidgid appuser /usr/lib/plexmediaserver/Plex\ Media\ Server
