@@ -1,0 +1,5 @@
+#!/command/with-contenv sh
+
+if [ -e /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid ]; then
+  rm -rf /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid
+fi

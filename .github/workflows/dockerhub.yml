@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: Dockerfile_centos
+          file: Dockerfile_debian
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/plexmediaserver:latest
       -
@@ -38,22 +38,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: Dockerfile_centos
+          file: Dockerfile_debian
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/plexmediaserver:centos7
-      -
-        name: Build and push tag ubuntu
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile_ubuntu
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/plexmediaserver:ubuntu
-      -
-        name: Build and push tag rocky8
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile_rocky8
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/plexmediaserver:rocky8
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/plexmediaserver:debian

@@ -1,16 +1,14 @@
 FROM digrouz/debian-s6:latest
+
+ARG PLEXVERSION='1.32.5.7516' 
+ARG PLEXHASH='8f4248874' 
+
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ### Environment variables
-ENV DEBIAN_FRONTEND='noninteractive' \
-    TERM='xterm' \
-    APPUSER='plex' \
-    APPUID='10011' \
-    APPGID='10011' \
-    PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
-    PLEXVERSION='1.32.5.7516' \
-    PLEXHASH='8f4248874' \
-    NVIDIA_DRIVER_CAPABILITIES='compute,video,utility'
+ENV PLEX_MEDIA_SERVER_INFO_DEVICE='docker' \
+    PLEXVERSION="${PLEXVERSION}" \
+    PLEXHASH="${PLEXHASH}"
 
 # Copy config files
 COPY root/ /
@@ -48,10 +46,3 @@ EXPOSE 32414/udp
 EXPOSE 32469/tcp
 EXPOSE 5353/udp
 EXPOSE 1900/udp
-
-### Running User: not used, managed by docker-entrypoint.sh
-#USER plex
-
-### Start Plex
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["plex"]

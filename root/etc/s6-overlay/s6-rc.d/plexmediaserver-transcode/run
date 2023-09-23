@@ -1,0 +1,5 @@
+#!/command/with-contenv sh
+
+if [ ! -d /transcode ];then
+  mkdir -p /transcode
+fi

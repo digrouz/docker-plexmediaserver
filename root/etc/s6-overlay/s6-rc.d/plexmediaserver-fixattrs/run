@@ -1,0 +1,4 @@
+#!/command/with-contenv sh
+
+chown -R appuser:appuser /transcode
+chmod -R u=rwx,g=rx,o-rwx /transcode
