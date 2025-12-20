@@ -1,14 +1,17 @@
+# docker-plexmediaserver
+
 [![auto-update-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/auto-update.yml)
 [![dockerhub-workflow](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/dockerhub.yml/badge.svg)](https://github.com/digrouz/docker-plexmediaserver/actions/workflows/dockerhub.yml)
 ![Docker Pulls](https://img.shields.io/docker/pulls/digrouz/plexmediaserver)
 
-# docker-plexmediaserver
 Install Plex Media Server into a Linux Container
 
 ![Plex](https://s3-us-west-2.amazonaws.com/kotis-estores/layouts/plex/plex-logo.png)
 
 ## Tag
+
 Several tag are available:
+
 * latest: see debian
 * debian: [Dockerfile_debian](https://github.com/digrouz/docker-plexmediaserver/blob/master/Dockerfile_debian)
 
@@ -21,9 +24,10 @@ Plex is a client-server media player system and software suite comprising two ma
 
 A premium version of the service, called Plex Pass, is also available and offers advanced features like synchronization with mobile devices, access to cloud storage providers, up to date and high quality metadata and matchings for music, multi-users mode, parental controls, access to high quality trailers and extras, wireless synchronization from mobile devices to the server, access to discounts on partner products and early access.
 
-https://www.plex.tv/
+[Official website](https://www.plex.tv/)
 
 ## Usage
+
     docker create --name=plexmediaserver  \
       --network=host \
       -v /etc/localtime:/etc/localtime:ro \
@@ -35,7 +39,6 @@ https://www.plex.tv/
       -e AUTOUPGRADE=<0|1 default:0> \
       -e TZ=<timezone default:Europe/Brussels> \
       digrouz/plexmediaserver
-
 
 ## Environment Variables
 
@@ -62,5 +65,3 @@ This variable is not mandatory and specifies the timezone to be configured withi
 * This container is built using [s6-overlay](https://github.com/just-containers/s6-overlay)
 * The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e AUTOUPGRADE=1` at container creation.
 * Running this container with the `host` network mode is a requirement.
-
-
