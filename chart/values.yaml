@@ -73,20 +73,40 @@ persistence:
       ## If set, the config will be stored in the existing persistent volume claim
       ##
       accessMode: ReadWriteOnce
-      ## @param persistence.config.pvc.size Size of the persistent volume for lidarr config
+      ## @param persistence.config.pvc.size Size of the persistent volume for Plex config
       ## If not set, the default size will be used
       ##
       size: 5Gi
-    ## Specific persistence options for lidarr config using NFS
+    ## Specific persistence options for Plex config using NFS
     ##      
     nfs:
-      ## @param persistence.config.nfs.server NFS server for lidarr config
+      ## @param persistence.config.nfs.server NFS server for Plex config
       ## If not set, the default NFS server will be used
       ##
       server: ""
-      ## @param persistence.config.nfs.path NFS path for lidarr config
+      ## @param persistence.config.nfs.path NFS path for Plex config
       ## If not set, the default NFS path will be used
       ##
       path: ""
+## @section Extra volumes and mounts
+##
+## @param extraVolumes Extra volumes to append to the pod's spec.volumes list.
+## Supports hostPath, pvc, nfs, configMap and secret volume sources.
+## Example:
+## extraVolumes:
+##   - name: media
+##     hostPath:
+##       path: /mnt/media
+##       type: Directory
+extraVolumes: []
+
+## @param extraVolumeMounts Extra mounts to append to the container's volumeMounts list.
+## Example:
+## extraVolumeMounts:
+##   - name: media
+##     mountPath: /media
+##     readOnly: true
+extraVolumeMounts: []
+
 extraObjects: []
 

@@ -6,7 +6,7 @@ metadata:
   name: {{ .Release.Name }}-webui-ingress
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/component: lidarr
+    app.kubernetes.io/component: plexmediaserver
   {{- if .Values.ingress.webui.annotations }}
   annotations:
     {{- range $key, $value := .Values.ingress.webui.annotations }}

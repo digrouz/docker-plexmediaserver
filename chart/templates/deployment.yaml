@@ -54,6 +54,7 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/plexmediaserver/Library
               name: plex-library
+{{- include "helper.extraVolumeMounts" . | nindent 12 }}
           env:
             - name: GID
               value: "{{ .Values.service.gid }}"
@@ -64,7 +65,7 @@ spec:
             - name: AUTOUPGRADE
               value: "{{ .Values.service.autoupgrade }}"
       volumes:
-        - name: plex-config
+        - name: plex-library
           {{- if eq .Values.persistence.config.type "pvc" }}
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-config-pvc
@@ -75,3 +76,4 @@ spec:
           {{- else }}
           emptyDir: { }
           {{- end }}
+{{- include "helper.extraVolumes" . | nindent 8 }}
