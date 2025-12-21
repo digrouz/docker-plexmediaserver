@@ -52,8 +52,8 @@ spec:
               name: plex-32414
               protocol: UDP
           volumeMounts:
-            - mountPath: /config
-              name: plex-config
+            - mountPath: /var/lib/plexmediaserver/Library
+              name: plex-library
           env:
             - name: GID
               value: "{{ .Values.service.gid }}"
