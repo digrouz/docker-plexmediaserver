@@ -1,19 +1,19 @@
-{{- if eq .Values.persistence.config.type "pvc" }}
+{{- if eq .Values.persistence.library.type "pvc" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-config-pvc
+  name: {{ .Release.Name }}-library-pvc
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/component: plexmediaserver 
 spec:
   accessModes:
-    - {{ .Values.persistence.config.pvc.accessMode | quote }}
+    - {{ .Values.persistence.library.pvc.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.config.pvc.size | quote }}
-  {{- if .Values.persistence.config.pvc.storageClass }}
-  storageClassName: {{ .Values.persistence.config.pvc.storageClass | quote }}
+      storage: {{ .Values.persistence.library.pvc.size | quote }}
+  {{- if .Values.persistence.library.pvc.storageClass }}
+  storageClassName: {{ .Values.persistence.library.pvc.storageClass | quote }}
   {{- end }}
 {{- end }}
 

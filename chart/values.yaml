@@ -56,35 +56,35 @@ ingress:
 ## @section Storage persistence Configuration
 ##
 persistence:
-  config:
-    ## @param persistence.config.type Type of persistence for Plex config
+  library:
+    ## @param persistence.library.type Type of persistence for Plex library
     ## If set to pvc, a persistent volume claim will be created
     ## If set to nfs, a network file system will be used
     ##
     type: pvc
-    ## Specific persistence options for Plex config using a persistent volume claim
+    ## Specific persistence options for Plex library using a persistent volume claim
     ##
     pvc:
-      ## @param persistence.config.pvc.storageClass Storage class for Plex config
+      ## @param persistence.library.pvc.storageClass Storage class for Plex library
       ## If not set, the default storage class will be used
       ##
       storageClass: longhorn
-      ## @param persistence.config.pvc.existingClaim Existing persistent volume claim for Plex config
-      ## If set, the config will be stored in the existing persistent volume claim
+      ## @param persistence.library.pvc.existingClaim Existing persistent volume claim for Plex library
+      ## If set, the library will be stored in the existing persistent volume claim
       ##
       accessMode: ReadWriteOnce
-      ## @param persistence.config.pvc.size Size of the persistent volume for Plex config
+      ## @param persistence.library.pvc.size Size of the persistent volume for Plex library
       ## If not set, the default size will be used
       ##
       size: 5Gi
-    ## Specific persistence options for Plex config using NFS
+    ## Specific persistence options for Plex library using NFS
     ##      
     nfs:
-      ## @param persistence.config.nfs.server NFS server for Plex config
+      ## @param persistence.library.nfs.server NFS server for Plex library
       ## If not set, the default NFS server will be used
       ##
       server: ""
-      ## @param persistence.config.nfs.path NFS path for Plex config
+      ## @param persistence.library.nfs.path NFS path for Plex library
       ## If not set, the default NFS path will be used
       ##
       path: ""

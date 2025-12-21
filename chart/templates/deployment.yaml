@@ -66,13 +66,13 @@ spec:
               value: "{{ .Values.service.autoupgrade }}"
       volumes:
         - name: plex-library
-          {{- if eq .Values.persistence.config.type "pvc" }}
+          {{- if eq .Values.persistence.library.type "pvc" }}
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-config-pvc
-          {{- else if eq .Values.persistence.config.type "nfs" }}
+            claimName: {{ .Release.Name }}-library-pvc
+          {{- else if eq .Values.persistence.library.type "nfs" }}
           nfs:
-            server: {{ .Values.persistence.config.nfs.server }}
-            path: {{ .Values.persistence.config.nfs.path }}
+            server: {{ .Values.persistence.library.nfs.server }}
+            path: {{ .Values.persistence.library.nfs.path }}
           {{- else }}
           emptyDir: { }
           {{- end }}
