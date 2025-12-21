@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-svc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: plexmediaserver
+spec:
+  ports:
+  - port: 32400
+    name: webui
+    protocol: TCP
+  selector:
+    app.kubernetes.io/component: plexmediaserver

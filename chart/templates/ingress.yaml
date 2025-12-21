@@ -1,0 +1,37 @@
+---
+{{- if .Values.ingress.webui.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-webui-ingress
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: lidarr
+  {{- if .Values.ingress.webui.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.webui.annotations }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.webui.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.webui.ingressClassName }}
+  {{- end }}
+  rules:
+  - host: {{ .Values.ingress.webui.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-svc
+            port:
+              name: webui
+  {{- if .Values.ingress.webui.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.webui.host }}
+      secretName: {{ .Values.ingress.webui.host }}-tls
+  {{- end }}
+{{- end }}

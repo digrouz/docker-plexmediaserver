@@ -1,0 +1,92 @@
+## @section Kubernetes settings
+##
+image:
+  ## @param image.registry plex image registry
+  ##
+  registry: docker.io
+  ## @param image.repository plex image repository
+  ##
+  repository: digrouz/plexmediaserver
+  ##
+  ## @param image.tag plex image tag
+  ## Ref: https://hub.docker.com/r/digrouz/plexmediaserver/tags
+  ##
+  tag: "latest"
+  ## @param image.pullPolicy plex image pull policy
+  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+## @param fullnameOverride String to override the application name.
+##
+fullnameOverride: ""
+## @section Service Configuration
+##
+service:
+  ## @param service.uid user id running plex
+  ##
+  uid: 12345
+  ## @param service.gid group id running plex
+  ##
+  gid: 12345
+  ## @param service.autoupgrade apply OS updates inside container at startup
+  ##
+  autoupgrade: 0
+  ## @param service.tz Time Zone
+  ##
+  tz: Europe/Brussels
+ingress:
+  webui:
+    ## @param ingress.webui.enabled Enable ingress for the Plex Web UI
+    ##
+    enabled: true
+    ## @param ingress.webui.ingressClassName Ingress class name for the Plex Web UI ingress
+    ##
+    ingressClassName: traefik
+    ## @param ingress.webui.host Host for the Plex Web UI ingress
+    ##
+    host: ""
+    ## @param ingress.webui.tls Enable TLS for the Plex Web UI ingress
+    ##
+    tls: true
+    ## @param ingress.webui.annotations Annotations for the Plex Web UI ingress
+    ##
+    annotations:
+      traefik.ingress.kubernetes.io/router.middlewares: []
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+## @section Storage persistence Configuration
+##
+persistence:
+  config:
+    ## @param persistence.config.type Type of persistence for Plex config
+    ## If set to pvc, a persistent volume claim will be created
+    ## If set to nfs, a network file system will be used
+    ##
+    type: pvc
+    ## Specific persistence options for Plex config using a persistent volume claim
+    ##
+    pvc:
+      ## @param persistence.config.pvc.storageClass Storage class for Plex config
+      ## If not set, the default storage class will be used
+      ##
+      storageClass: longhorn
+      ## @param persistence.config.pvc.existingClaim Existing persistent volume claim for Plex config
+      ## If set, the config will be stored in the existing persistent volume claim
+      ##
+      accessMode: ReadWriteOnce
+      ## @param persistence.config.pvc.size Size of the persistent volume for lidarr config
+      ## If not set, the default size will be used
+      ##
+      size: 5Gi
+    ## Specific persistence options for lidarr config using NFS
+    ##      
+    nfs:
+      ## @param persistence.config.nfs.server NFS server for lidarr config
+      ## If not set, the default NFS server will be used
+      ##
+      server: ""
+      ## @param persistence.config.nfs.path NFS path for lidarr config
+      ## If not set, the default NFS path will be used
+      ##
+      path: ""
+extraObjects: []
+

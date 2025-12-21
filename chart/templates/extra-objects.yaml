@@ -1,0 +1,3 @@
+{{- if .Values.extraObjects }}
+{{- toYaml .Values.extraObjects | nindent 0 }}
+{{- end }}
