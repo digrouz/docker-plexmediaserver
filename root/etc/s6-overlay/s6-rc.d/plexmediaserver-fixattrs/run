@@ -1,4 +1,16 @@
 #!/command/with-contenv sh
 
+PUID=${UID:-12345}
+if [ ! "$(stat -c %u /var/lib/plexmediaserver/Library)" == "${PUID}" ]; then
+  echo "Change in ownership detected, please be patient while we chown existing files"
+  echo "This could take some time"
+  chown -R appuser:appuser \
+           /var/lib/plexmediaserver/Library
+fi
+
+chown appuser:appuser \
+      /var/lib/plexmediaserver \
+      /var/lib/plexmediaserver/*
+
 chown -R appuser:appuser /transcode
 chmod -R u=rwx,g=rx,o-rwx /transcode
