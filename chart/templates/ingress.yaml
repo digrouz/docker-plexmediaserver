@@ -92,3 +92,115 @@ spec:
     services:
     - name: {{ .Release.Name }}-svc
       port:  3005
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-1900
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex1900.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  1900
+      weight: {{ .Values.ingress.plex1900.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-5353
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex5353.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  5353
+      weight: {{ .Values.ingress.plex5353.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-32410
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex32410.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  32410
+      weight: {{ .Values.ingress.plex32410.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-32411
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex32411.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  32411
+      weight: {{ .Values.ingress.plex32411.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-32412
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex32412.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  32412
+      weight: {{ .Values.ingress.plex32412.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-32413
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex32413.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  32413
+      weight: {{ .Values.ingress.plex32413.weight }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: {{ .Release.Name }}-plex-32414
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
+spec:
+  entryPoints:
+    - {{ .Values.ingress.plex32414.traefik.entrypoint }}
+  routes:
+  - services:
+    - name: {{ .Release.Name }}-svc
+      port:  32414
+      weight: {{ .Values.ingress.plex32414.weight }}

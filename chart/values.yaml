@@ -77,6 +77,62 @@ ingress:
     ## @param ingress.plex3005.priority Priority for Plex 3005 ingress route
     ##
     priority: 10
+  plex1900:
+    ## @param ingress.plex1900.traefik.entrypoint Traefik entrypoint for Plex 1900 ingress route
+    ##
+    traefik:
+      entrypoint: plex-1900
+    ## @param ingress.plex1900.priority Priority for Plex 1900 ingress route
+    ##
+    weight: 10
+  plex5353:
+    ## @param ingress.plex5353.traefik.entrypoint Traefik entrypoint for Plex 5353 ingress route
+    ##
+    traefik:
+      entrypoint: plex-5353
+    ## @param ingress.plex5353.priority Priority for Plex 5353 ingress route
+    ##
+    weight: 10
+  plex32410:
+    ## @param ingress.plex32410.traefik.entrypoint Traefik entrypoint for Plex 32410 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32410
+    ## @param ingress.plex32410.priority Priority for Plex 32410 ingress route
+    ##
+    weight: 10
+  plex32411:
+    ## @param ingress.plex32411.traefik.entrypoint Traefik entrypoint for Plex 32411 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32411
+    ## @param ingress.plex32411.priority Priority for Plex 32411 ingress route
+    ##
+    weight: 10
+  plex32412:
+    ## @param ingress.plex32412.traefik.entrypoint Traefik entrypoint for Plex 32412 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32412
+    ## @param ingress.plex32412.priority Priority for Plex 32412 ingress route
+    ##
+    weight: 10
+  plex32413:
+    ## @param ingress.plex32413.traefik.entrypoint Traefik entrypoint for Plex 32413 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32413
+    ## @param ingress.plex32413.priority Priority for Plex 32413 ingress route
+    ##
+    weight: 10
+  plex32414:
+    ## @param ingress.plex32414.traefik.entrypoint Traefik entrypoint for Plex 32414 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32414
+    ## @param ingress.plex32414.priority Priority for Plex 32414 ingress route
+    ##
+    weight: 10
 ## @section Storage persistence Configuration
 ##
 persistence:
