@@ -29,6 +29,9 @@ spec:
   - port: 32410
     name: plex-32410
     protocol: UDP
+  - port: 32411
+    name: plex-32411
+    protocol: UDP
   - port: 32412
     name: plex-32412
     protocol: UDP
