@@ -11,5 +11,32 @@ spec:
   - port: 32400
     name: webui
     protocol: TCP
+  - port: 1900
+    name: dlna
+    protocol: UDP
+  - port: 5353
+    name: bonjour
+    protocol: UDP
+  - port: 3005
+    name: plex-3005
+    protocol: TCP
+  - port: 8324
+    name: plex-8324
+    protocol: TCP
+  - port: 32469
+    name: plex-32469
+    protocol: TCP
+  - port: 32410
+    name: plex-32410
+    protocol: UDP
+  - port: 32412
+    name: plex-32412
+    protocol: UDP
+  - port: 32413
+    name: plex-32413
+    protocol: UDP
+  - port: 32414
+    name: plex-32414
+    protocol: UDP
   selector:
     app.kubernetes.io/component: plexmediaserver
