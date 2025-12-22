@@ -35,13 +35,13 @@ service:
   ##
   tz: Europe/Brussels
 ingress:
+  ## @param ingress.ingressClassName Ingress class name for the Plex Web ingresses
+  ##
+  ingressClassName: traefik
   webui:
     ## @param ingress.webui.enabled Enable ingress for the Plex Web UI
     ##
     enabled: true
-    ## @param ingress.webui.ingressClassName Ingress class name for the Plex Web UI ingress
-    ##
-    ingressClassName: traefik
     ## @param ingress.webui.host Host for the Plex Web UI ingress
     ##
     host: ""
@@ -53,6 +53,30 @@ ingress:
     annotations:
       traefik.ingress.kubernetes.io/router.middlewares: []
       cert-manager.io/cluster-issuer: letsencrypt-prod
+  plex-32469:
+    ## @param ingress.plex-32469.traefik.entrypoint Traefik entrypoint for Plex 32469 ingress route
+    ##
+    traefik:
+      entrypoint: plex-32469
+    ## @param ingress.plex-32469.priority Priority for Plex 32469 ingress route
+    ##
+    priority: 10
+  plex-8324:
+    ## @param ingress.plex-8324.traefik.entrypoint Traefik entrypoint for Plex 8324 ingress route
+    ##
+    traefik:
+      entrypoint: plex-8324
+    ## @param ingress.plex-8324.priority Priority for Plex 8324 ingress route
+    ##
+    priority: 10
+  plex-3005:
+    ## @param ingress.plex-3005.traefik.entrypoint Traefik entrypoint for Plex 3005 ingress route
+    ##
+    traefik:
+      entrypoint: plex-3005
+    ## @param ingress.plex-3005.priority Priority for Plex 3005 ingress route
+    ##
+    priority: 10
 ## @section Storage persistence Configuration
 ##
 persistence:
