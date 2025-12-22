@@ -47,10 +47,10 @@ metadata:
     {{- end }}
 spec:
   entryPoints:
-    - {{ .Values.ingress.plex-32469.traefik.entrypoint }}
+    - {{ .Values.ingress.plex32469.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
-    priority: {{ .Values.ingress.plex-32469.priority }}
+    priority: {{ .Values.ingress.plex32469.priority }}
     services:
     - name: {{ .Release.Name }}-svc
       port:  32469
@@ -66,10 +66,10 @@ metadata:
     {{- end }}
 spec:
   entryPoints:
-    - {{ .Values.ingress.plex-8324.traefik.entrypoint }}
+    - {{ .Values.ingress.plex8324.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
-    priority: {{ .Values.ingress.plex-8324.priority }}
+    priority: {{ .Values.ingress.plex8324.priority }}
     services:
     - name: {{ .Release.Name }}-svc
       port:  8324
@@ -85,10 +85,10 @@ metadata:
     {{- end }}
 spec:
   entryPoints:
-    - {{ .Values.ingress.plex-3005.traefik.entrypoint }}
+    - {{ .Values.ingress.plex3005.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
-    priority: {{ .Values.ingress.plex-3005.priority }}
+    priority: {{ .Values.ingress.plex3005.priority }}
     services:
     - name: {{ .Release.Name }}-svc
       port:  3005

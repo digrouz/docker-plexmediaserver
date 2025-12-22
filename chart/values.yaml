@@ -53,28 +53,28 @@ ingress:
     annotations:
       traefik.ingress.kubernetes.io/router.middlewares: []
       cert-manager.io/cluster-issuer: letsencrypt-prod
-  plex-32469:
-    ## @param ingress.plex-32469.traefik.entrypoint Traefik entrypoint for Plex 32469 ingress route
+  plex32469:
+    ## @param ingress.plex32469.traefik.entrypoint Traefik entrypoint for Plex 32469 ingress route
     ##
     traefik:
       entrypoint: plex-32469
-    ## @param ingress.plex-32469.priority Priority for Plex 32469 ingress route
+    ## @param ingress.plex32469.priority Priority for Plex 32469 ingress route
     ##
     priority: 10
-  plex-8324:
-    ## @param ingress.plex-8324.traefik.entrypoint Traefik entrypoint for Plex 8324 ingress route
+  plex8324:
+    ## @param ingress.plex8324.traefik.entrypoint Traefik entrypoint for Plex 8324 ingress route
     ##
     traefik:
       entrypoint: plex-8324
-    ## @param ingress.plex-8324.priority Priority for Plex 8324 ingress route
+    ## @param ingress.plex8324.priority Priority for Plex 8324 ingress route
     ##
     priority: 10
-  plex-3005:
-    ## @param ingress.plex-3005.traefik.entrypoint Traefik entrypoint for Plex 3005 ingress route
+  plex3005:
+    ## @param ingress.plex3005.traefik.entrypoint Traefik entrypoint for Plex 3005 ingress route
     ##
     traefik:
       entrypoint: plex-3005
-    ## @param ingress.plex-3005.priority Priority for Plex 3005 ingress route
+    ## @param ingress.plex3005.priority Priority for Plex 3005 ingress route
     ##
     priority: 10
 ## @section Storage persistence Configuration
