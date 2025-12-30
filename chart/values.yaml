@@ -34,6 +34,17 @@ service:
   ## @param service.tz Time Zone
   ##
   tz: Europe/Brussels
+  ## @section LoadBalancer service Configuration
+  loadBalancer:
+    ## @param service.loadBalancer.enabled Enable an extra LoadBalancer service
+    ##
+    enabled: "false"
+    ## @param service.loadBalancer.ipAddressPool Metallb IP address pool name
+    ##
+    ipAddressPool: ""
+    ## @param service.loadBalancer.ipAddress Specific IP address to assign to the LoadBalancer
+    ##
+    ipAddress: ""
 ingress:
   ## @param ingress.ingressClassName Ingress class name for the Plex Web ingresses
   ##
