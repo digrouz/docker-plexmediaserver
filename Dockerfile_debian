@@ -23,8 +23,6 @@ RUN set -x && \
       curl \
     && \
     curl -sL https://downloads.plex.tv/plex-media-server-new/${PLEXVERSION}-${PLEXHASH}/debian/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb -o /tmp/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb && \
-    echo deb https://downloads.plex.tv/repo/deb public main | tee /etc/apt/sources.list.d/my-plexmediaserver.list && \
-    curl https://downloads.plex.tv/plex-keys/PlexSign.key -o /etc/apt/trusted.gpg.d/my-plexmediaserver.asc && \
     apt-get update && \
     dpkg -i --force-confold \
       /tmp/plexmediaserver_${PLEXVERSION}-${PLEXHASH}_amd64.deb \
