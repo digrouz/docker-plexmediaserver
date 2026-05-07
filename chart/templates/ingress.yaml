@@ -41,11 +41,10 @@ kind: IngressRouteTCP
 metadata:
   name: {{ .Release.Name }}-plex-32469
   namespace: {{ .Release.Namespace }}
-  annotations:
-    {{- if .Values.ingress.ingressClassName }}
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
-    {{- end }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32469.traefik.entrypoint }}
   routes:
@@ -60,11 +59,10 @@ kind: IngressRouteTCP
 metadata:
   name: {{ .Release.Name }}-plex-8324
   namespace: {{ .Release.Namespace }}
-  annotations:
-    {{- if .Values.ingress.ingressClassName }}
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
-    {{- end }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex8324.traefik.entrypoint }}
   routes:
@@ -79,11 +77,10 @@ kind: IngressRouteTCP
 metadata:
   name: {{ .Release.Name }}-plex-3005
   namespace: {{ .Release.Namespace }}
-  annotations:
-    {{- if .Values.ingress.ingressClassName }}
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
-    {{- end }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex3005.traefik.entrypoint }}
   routes:
@@ -98,9 +95,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-1900
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex1900.traefik.entrypoint }}
   routes:
@@ -114,9 +112,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-5353
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex5353.traefik.entrypoint }}
   routes:
@@ -130,9 +129,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-32410
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32410.traefik.entrypoint }}
   routes:
@@ -146,9 +146,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-32411
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32411.traefik.entrypoint }}
   routes:
@@ -162,9 +163,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-32412
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32412.traefik.entrypoint }}
   routes:
@@ -178,9 +180,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-32413
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32413.traefik.entrypoint }}
   routes:
@@ -194,9 +197,10 @@ kind: IngressRouteUDP
 metadata:
   name: {{ .Release.Name }}-plex-32414
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32414.traefik.entrypoint }}
   routes:
