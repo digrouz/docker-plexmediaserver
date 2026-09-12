@@ -1,5 +1,5 @@
-{{- if .Values.ingress.webui.enabled }}
 ---
+{{- if .Values.ingress.webui.enabled -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -10,7 +10,7 @@ metadata:
   {{- if .Values.ingress.webui.annotations }}
   annotations:
     {{- range $key, $value := .Values.ingress.webui.annotations }}
-    {{ $key }}: {{ $value | quote }}
+    {{ $key }}: {{ $value }}
     {{- end }}
   {{- end }}
 spec:
@@ -35,7 +35,6 @@ spec:
       secretName: {{ .Values.ingress.webui.host }}-tls
   {{- end }}
 {{- end }}
-{{- if and .Values.ingress.traefik.enabled .Values.ingress.ingressClassName }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
@@ -43,14 +42,17 @@ metadata:
   name: {{ .Release.Name }}-plex-32469
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32469.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
+    priority: {{ .Values.ingress.plex32469.priority }}
     services:
     - name: {{ .Release.Name }}-svc
-      port: 32469
+      port:  32469
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
@@ -58,14 +60,17 @@ metadata:
   name: {{ .Release.Name }}-plex-8324
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex8324.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
+    priority: {{ .Values.ingress.plex8324.priority }}
     services:
     - name: {{ .Release.Name }}-svc
-      port: 8324
+      port:  8324
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
@@ -73,14 +78,17 @@ metadata:
   name: {{ .Release.Name }}-plex-3005
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
   ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex3005.traefik.entrypoint }}
   routes:
   - match: HostSNI(`*`)
+    priority: {{ .Values.ingress.plex3005.priority }}
     services:
     - name: {{ .Release.Name }}-svc
-      port: 3005
+      port:  3005
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -88,12 +96,16 @@ metadata:
   name: {{ .Release.Name }}-plex-1900
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex1900.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 1900
+      port:  1900
+      weight: {{ .Values.ingress.plex1900.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -101,12 +113,16 @@ metadata:
   name: {{ .Release.Name }}-plex-5353
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex5353.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 5353
+      port:  5353
+      weight: {{ .Values.ingress.plex5353.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -114,12 +130,16 @@ metadata:
   name: {{ .Release.Name }}-plex-32410
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32410.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 32410
+      port:  32410
+      weight: {{ .Values.ingress.plex32410.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -127,12 +147,16 @@ metadata:
   name: {{ .Release.Name }}-plex-32411
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32411.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 32411
+      port:  32411
+      weight: {{ .Values.ingress.plex32411.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -140,12 +164,16 @@ metadata:
   name: {{ .Release.Name }}-plex-32412
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32412.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 32412
+      port:  32412
+      weight: {{ .Values.ingress.plex32412.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -153,12 +181,16 @@ metadata:
   name: {{ .Release.Name }}-plex-32413
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32413.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 32413
+      port:  32413
+      weight: {{ .Values.ingress.plex32413.weight }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteUDP
@@ -166,10 +198,13 @@ metadata:
   name: {{ .Release.Name }}-plex-32414
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   entryPoints:
     - {{ .Values.ingress.plex32414.traefik.entrypoint }}
   routes:
   - services:
     - name: {{ .Release.Name }}-svc
-      port: 32414
-{{- end }}
+      port:  32414
+      weight: {{ .Values.ingress.plex32414.weight }}

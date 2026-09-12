@@ -19,51 +19,6 @@ image:
 ## @param fullnameOverride String to override the application name.
 ##
 fullnameOverride: ""
-podDisruptionBudget:
-  ## @param podDisruptionBudget.enabled Enable a PodDisruptionBudget (minAvailable: 1)
-  ## Prevents the pod from being evicted during voluntary disruptions (e.g. node drain),
-  ## which guarantees a single Plex instance at any time (SQLite database is single-writer)
-  ##
-  enabled: true
-## @section Container settings
-##
-## @param claimToken Plex claim token configuration (claim code from https://app.plex.tv/claim)
-## If neither `token` nor `name` is set, the claim code has to be entered manually
-## in the Plex Web UI after first start.
-##
-claimToken:
-  ## @param claimToken.token Plex claim token.
-  ## If set (and `name` is empty), the chart creates a secret
-  ## `<release>-plexmediaserver-claim` and passes the token to Plex via PLEX_CLAIM.
-  ##
-  token: ""
-  ## @param claimToken.name Name of an existing secret containing the Plex claim token.
-  ## If set, takes precedence over `token` and no secret is created by the chart.
-  ##
-  name: ""
-  ## @param claimToken.key Key of the secret containing the Plex claim token
-  ##
-  key: plex_claim
-## @param terminationGracePeriodSeconds Seconds to wait before sending SIGKILL to the container
-## Plex needs time to stop transcoding sessions gracefully on shutdown
-##
-terminationGracePeriodSeconds: 180
-## @param probes.enabled Enable liveness/readiness TCP probes on port 32400
-##
-probes:
-  enabled: true
-  ## @param probes.initialDelaySeconds Seconds to wait before the first probe
-  ##
-  initialDelaySeconds: 60
-## @param resources CPU/memory resource requests and limits for the Plex container
-##
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu: "4"
-    memory: 4Gi
 ## @section Service Configuration
 ##
 service:
@@ -83,7 +38,7 @@ service:
   loadBalancer:
     ## @param service.loadBalancer.enabled Enable an extra LoadBalancer service
     ##
-    enabled: false
+    enabled: "false"
     ## @param service.loadBalancer.ipAddressPool Metallb IP address pool name
     ##
     ipAddressPool: ""
@@ -94,10 +49,6 @@ ingress:
   ## @param ingress.ingressClassName Ingress class name for the Plex Web ingresses
   ##
   ingressClassName: traefik
-  traefik:
-    ## @param ingress.traefik.enabled Enable Traefik IngressRoute TCP/UDP routes for the Plex service ports
-    ##
-    enabled: true
   webui:
     ## @param ingress.webui.enabled Enable ingress for the Plex Web UI
     ##
@@ -111,58 +62,88 @@ ingress:
     ## @param ingress.webui.annotations Annotations for the Plex Web UI ingress
     ##
     annotations:
-      traefik.ingress.kubernetes.io/router.middlewares: ""
+      traefik.ingress.kubernetes.io/router.middlewares: []
       cert-manager.io/cluster-issuer: letsencrypt-prod
   plex32469:
     ## @param ingress.plex32469.traefik.entrypoint Traefik entrypoint for Plex 32469 ingress route
     ##
     traefik:
       entrypoint: plex-32469
+    ## @param ingress.plex32469.priority Priority for Plex 32469 ingress route
+    ##
+    priority: 10
   plex8324:
     ## @param ingress.plex8324.traefik.entrypoint Traefik entrypoint for Plex 8324 ingress route
     ##
     traefik:
       entrypoint: plex-8324
+    ## @param ingress.plex8324.priority Priority for Plex 8324 ingress route
+    ##
+    priority: 10
   plex3005:
     ## @param ingress.plex3005.traefik.entrypoint Traefik entrypoint for Plex 3005 ingress route
     ##
     traefik:
       entrypoint: plex-3005
+    ## @param ingress.plex3005.priority Priority for Plex 3005 ingress route
+    ##
+    priority: 10
   plex1900:
     ## @param ingress.plex1900.traefik.entrypoint Traefik entrypoint for Plex 1900 ingress route
     ##
     traefik:
       entrypoint: plex-1900
+    ## @param ingress.plex1900.priority Priority for Plex 1900 ingress route
+    ##
+    weight: 10
   plex5353:
     ## @param ingress.plex5353.traefik.entrypoint Traefik entrypoint for Plex 5353 ingress route
     ##
     traefik:
       entrypoint: plex-5353
+    ## @param ingress.plex5353.priority Priority for Plex 5353 ingress route
+    ##
+    weight: 10
   plex32410:
     ## @param ingress.plex32410.traefik.entrypoint Traefik entrypoint for Plex 32410 ingress route
     ##
     traefik:
       entrypoint: plex-32410
+    ## @param ingress.plex32410.priority Priority for Plex 32410 ingress route
+    ##
+    weight: 10
   plex32411:
     ## @param ingress.plex32411.traefik.entrypoint Traefik entrypoint for Plex 32411 ingress route
     ##
     traefik:
       entrypoint: plex-32411
+    ## @param ingress.plex32411.priority Priority for Plex 32411 ingress route
+    ##
+    weight: 10
   plex32412:
     ## @param ingress.plex32412.traefik.entrypoint Traefik entrypoint for Plex 32412 ingress route
     ##
     traefik:
       entrypoint: plex-32412
+    ## @param ingress.plex32412.priority Priority for Plex 32412 ingress route
+    ##
+    weight: 10
   plex32413:
     ## @param ingress.plex32413.traefik.entrypoint Traefik entrypoint for Plex 32413 ingress route
     ##
     traefik:
       entrypoint: plex-32413
+    ## @param ingress.plex32413.priority Priority for Plex 32413 ingress route
+    ##
+    weight: 10
   plex32414:
     ## @param ingress.plex32414.traefik.entrypoint Traefik entrypoint for Plex 32414 ingress route
     ##
     traefik:
       entrypoint: plex-32414
+    ## @param ingress.plex32414.priority Priority for Plex 32414 ingress route
+    ##
+    weight: 10
 ## @section Storage persistence Configuration
 ##
 persistence:
@@ -170,7 +151,6 @@ persistence:
     ## @param persistence.library.type Type of persistence for Plex library
     ## If set to pvc, a persistent volume claim will be created
     ## If set to nfs, a network file system will be used
-    ## If set to anything else, an emptyDir will be used
     ##
     type: pvc
     ## Specific persistence options for Plex library using a persistent volume claim
@@ -180,7 +160,8 @@ persistence:
       ## If not set, the default storage class will be used
       ##
       storageClass: longhorn
-      ## @param persistence.library.pvc.accessMode Access mode for Plex library
+      ## @param persistence.library.pvc.existingClaim Existing persistent volume claim for Plex library
+      ## If set, the library will be stored in the existing persistent volume claim
       ##
       accessMode: ReadWriteOnce
       ## @param persistence.library.pvc.size Size of the persistent volume for Plex library
