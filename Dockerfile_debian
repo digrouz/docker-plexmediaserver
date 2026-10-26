@@ -1,7 +1,7 @@
 FROM digrouz/debian-s6:latest
 
-ARG PLEXVERSION='1.43.5.11029' 
-ARG PLEXHASH='6bf8af3f0' 
+ARG PLEXVERSION='1.43.5.11079' 
+ARG PLEXHASH='b3b13e506' 
 
 LABEL maintainer="DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
